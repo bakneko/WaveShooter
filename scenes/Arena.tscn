@@ -15,10 +15,10 @@ glow_bicubic_upscale = true
 script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 320, 180 )
+position = Vector2( 319.63, 179.63 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 163.16, 145.521 )
+position = Vector2( 162.79, 145.151 )
