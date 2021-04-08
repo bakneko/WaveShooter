@@ -1,10 +1,18 @@
 extends Sprite
 
-var speed = 150
+var speed = 175
 var velocity = Vector2()
 var can_shoot = true
 
 var bullet = preload("res://scenes/Bullet.tscn")
+
+func _ready():
+	Global.player = self
+	pass
+
+func _exit_tree():
+	Global.player = null
+	pass
 
 func _process(delta):
 	# 当pressed 时，返回值为1，相加相减解决同时按下方向相反的按键时的问题。
