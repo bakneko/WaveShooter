@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/BloodParticles.gd" type="Script" id=1]
+[ext_resource path="res://assets/Circle.png" type="Texture" id=2]
+
+[node name="BloodParticles" type="CPUParticles2D"]
+z_index = -5
+amount = 15
+lifetime = 0.2
+explosiveness = 1.0
+texture = ExtResource( 2 )
+spread = 19.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 658.0
+initial_velocity_random = 1.0
+scale_amount = 0.03
+scale_amount_random = 0.06
+color = Color( 0.760784, 0.14902, 0.188235, 0.8 )
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "设置Z Index为负值，让粒子在下层显示"
+}
+
+[node name="FreezeBloodTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="FreezeBloodTimer" to="." method="_on_FreezeBloodTimer_timeout"]
