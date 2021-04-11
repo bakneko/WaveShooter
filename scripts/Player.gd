@@ -3,6 +3,7 @@ extends Sprite
 var speed = 175
 var velocity = Vector2()
 var can_shoot = true
+var is_dead = false
 
 var bullet = preload("res://scenes/Bullet.tscn")
 
@@ -20,10 +21,14 @@ func _process(delta):
 	velocity.y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
 	
 	velocity = velocity.normalized()
+	# 防止Player跑出屏幕
+	global_position.x = clamp(global_position.x, 0, 640)
+	global_position.y = clamp(global_position.y, 0, 360)
 	# 乘以delta保证速度一致
-	global_position += velocity * speed * delta
+	if !is_dead:
+		global_position += velocity * speed * delta
 	
-	if Input.is_action_pressed("click") and Global.node_creation_parent != null and can_shoot:
+	if Input.is_action_pressed("click") and Global.node_creation_parent != null and can_shoot and !is_dead:
 		Global.instance_node(bullet, global_position, Global.node_creation_parent)
 		$ReloadTimer.start()
 		can_shoot = false
@@ -33,4 +38,14 @@ func _process(delta):
 
 func _on_ReloadTimer_timeout():
 	can_shoot = true
+	pass
+
+
+func _on_HitBox_area_entered(area):
+	# 玩家死亡
+	if area.is_in_group("enemy"):
+		visible = false
+		is_dead = true
+		yield(get_tree().create_timer(1),"timeout")
+		get_tree().reload_current_scene()
 	pass
