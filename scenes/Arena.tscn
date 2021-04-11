@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Arena.gd" type="Script" id=2]
 [ext_resource path="res://assets/YousheTitleBlack.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://scripts/Score.gd" type="Script" id=4]
+[ext_resource path="res://scripts/Camera2D.gd" type="Script" id=5]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -54,4 +55,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 320, 180 )
+current = true
+script = ExtResource( 5 )
+
+[node name="ScreenShakeTimer" type="Timer" parent="Camera2D"]
+one_shot = true
+
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_EnemySpawnTimer_timeout"]
+[connection signal="timeout" from="Camera2D/ScreenShakeTimer" to="Camera2D" method="_on_ScreenShakeTimer_timeout"]

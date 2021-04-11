@@ -17,6 +17,8 @@ func _process(delta):
 		velocity = lerp(velocity, Vector2(0,0), 0.3)
 	global_position += velocity * speed * delta
 	if hp <= 0:
+		if Global.camera != null:
+			Global.camera.screen_shake(50, 0.1)
 		# add score
 		Global.score += 10
 		# instance node

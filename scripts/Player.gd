@@ -22,8 +22,8 @@ func _process(delta):
 	
 	velocity = velocity.normalized()
 	# 防止Player跑出屏幕
-	global_position.x = clamp(global_position.x, 0, 640)
-	global_position.y = clamp(global_position.y, 0, 360)
+	global_position.x = clamp(global_position.x, 10, 630)
+	global_position.y = clamp(global_position.y, 10, 350)
 	# 乘以delta保证速度一致
 	if !is_dead:
 		global_position += velocity * speed * delta

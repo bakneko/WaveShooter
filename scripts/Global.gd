@@ -3,7 +3,7 @@ extends Node
 # 修复如果没有Parent的问题
 var node_creation_parent = null
 var player = null
-
+var camera = null
 var score = 0
 
 # 全局的实例化子场景代码
