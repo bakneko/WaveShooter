@@ -46,6 +46,8 @@ func _on_HitBox_area_entered(area):
 	if area.is_in_group("enemy"):
 		visible = false
 		is_dead = true
+		if Global.is_first_round:
+			Global.is_first_round = false
 		yield(get_tree().create_timer(1),"timeout")
 		get_tree().reload_current_scene()
 	pass

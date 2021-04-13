@@ -5,6 +5,8 @@ var node_creation_parent = null
 var player = null
 var camera = null
 var score = 0
+var high_score = 0
+var is_first_round = true
 
 # 全局的实例化子场景代码
 func instance_node(node, location, parent):

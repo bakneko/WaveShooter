@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Arena.gd" type="Script" id=2]
 [ext_resource path="res://assets/YousheTitleBlack.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://scripts/Score.gd" type="Script" id=4]
 [ext_resource path="res://scripts/Camera2D.gd" type="Script" id=5]
+[ext_resource path="res://scripts/HighScore.gd" type="Script" id=6]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -18,6 +19,10 @@ size = 50
 use_filter = true
 font_data = ExtResource( 3 )
 
+[sub_resource type="DynamicFont" id=3]
+use_filter = true
+font_data = ExtResource( 3 )
+
 [node name="Arena" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -28,7 +33,11 @@ position = Vector2( 319.63, 179.63 )
 environment = SubResource( 1 )
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
-wait_time = 0.75
+wait_time = 3.0
+autostart = true
+
+[node name="DifficultyTimer" type="Timer" parent="."]
+wait_time = 5.0
 autostart = true
 
 [node name="UI" type="Node2D" parent="."]
@@ -50,7 +59,23 @@ margin_right = 640.0
 margin_bottom = 80.0
 custom_fonts/font = SubResource( 2 )
 align = 1
+valign = 1
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HighScore" type="Label" parent="UI/Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 0.629944
+margin_top = -80.0
+margin_right = 630.0
+margin_bottom = -10.0
+custom_fonts/font = SubResource( 3 )
+align = 2
+valign = 2
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -64,4 +89,5 @@ script = ExtResource( 5 )
 one_shot = true
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_EnemySpawnTimer_timeout"]
+[connection signal="timeout" from="DifficultyTimer" to="." method="_on_DifficultyTimer_timeout"]
 [connection signal="timeout" from="Camera2D/ScreenShakeTimer" to="Camera2D" method="_on_ScreenShakeTimer_timeout"]
