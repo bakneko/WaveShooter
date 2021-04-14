@@ -9,9 +9,6 @@ func _on_FreezeBloodTimer_timeout():
 	set_process_unhandled_key_input(false)
 	# 完全禁止粒子
 	pass
-	
-	
-
 
 func _on_DisappearTimer_timeout():
 	queue_free()

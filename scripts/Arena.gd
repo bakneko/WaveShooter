@@ -5,7 +5,7 @@ var enemy_1 = preload("res://scenes/Enemy.tscn")
 func _ready():
 	Global.node_creation_parent = self
 	Global.score = 0
-pass
+	pass
 
 func _exit_tree():
 	Global.node_creation_parent = null
@@ -24,3 +24,4 @@ func _on_EnemySpawnTimer_timeout():
 func _on_DifficultyTimer_timeout():
 	if $EnemySpawnTimer.wait_time > 0.5:
 		$EnemySpawnTimer.wait_time -= 0.1
+	pass
