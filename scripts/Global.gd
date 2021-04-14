@@ -14,3 +14,23 @@ func instance_node(node, location, parent):
 	parent.add_child(node_instance)
 	node_instance.global_position = location
 	return node_instance
+
+# 权重生成
+# 传入权重列表，返回随机出来的数在权重列表中的位置
+func random_weight(weights):
+	var total_weight = 0
+	# 计算权重列表的总和
+	for i in weights:
+		total_weight += i
+	# 生成一个从1到total_weight的随机数
+	var random = randi() % total_weight + 1
+	# 从0到weights.size() - 1进行循环
+	# !!!注意range(a, b)是从a 到 b - 1 
+	var current = 0
+	for i in range(0, weights.size()):
+		current += weights[i]
+		if random - current <= 0:
+			# 属于当前的组
+			return i
+		else:
+			continue

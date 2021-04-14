@@ -17,11 +17,8 @@ func _on_EnemySpawnTimer_timeout():
 	while enemy_position.x < 640 and enemy_position.x > -80 and enemy_position.y < 360 and enemy_position.y  > -45:
 		enemy_position = Vector2(rand_range(-160,670), rand_range(-90,390))
 	
-	# 0-2 
-	# random a index to generate.
-	# ToDo : 其实应该增加生成权重
-	var enemy_index = randi() % enemies.size()
-	Global.instance_node(enemies[enemy_index], enemy_position, self)
+	# random with weight.
+	Global.instance_node(enemies[Global.random_weight([5,3,2])], enemy_position, self)
 	pass
 
 
