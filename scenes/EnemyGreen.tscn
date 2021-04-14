@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/EnemyCore.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/EnemySimple.gd" type="Script" id=2]
+
+[node name="EnemyCore" instance=ExtResource( 1 )]
+modulate = Color( 0.180392, 0.8, 0.443137, 1 )
+scale = Vector2( 0.2, 0.2 )
+script = ExtResource( 2 )
+speed = 30
+hp = 10
+knock_back = 300
+screen_shake = 200
+score = 50
