@@ -12,3 +12,9 @@ hp = 10
 knock_back = 300
 screen_shake = 200
 score = 50
+
+[node name="HitBox" parent="." index="0"]
+visible = true
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2( 0, -0.834274 )

@@ -17,12 +17,13 @@ func _on_EnemySpawnTimer_timeout():
 	while enemy_position.x < 640 and enemy_position.x > -80 and enemy_position.y < 360 and enemy_position.y  > -45:
 		enemy_position = Vector2(rand_range(-160,670), rand_range(-90,390))
 	
+	var index = Global.random_weight([5,3,2])
 	# random with weight.
-	Global.instance_node(enemies[Global.random_weight([5,3,2])], enemy_position, self)
+	Global.instance_node(enemies[index], enemy_position, self)
 	pass
 
 
 func _on_DifficultyTimer_timeout():
 	if $EnemySpawnTimer.wait_time > 0.5:
-		$EnemySpawnTimer.wait_time -= 0.05
+		$EnemySpawnTimer.wait_time -= 0.1
 	pass
