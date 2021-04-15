@@ -22,7 +22,10 @@ func _process(_delta):
 		Global.score += score
 		# instance node
 		if Global.node_creation_parent != null:
-			var blood_particles_instance = Global.instance_node(blood_particles, global_position, Global.node_creation_parent)
+			var dict = {
+				"global_position" : global_position
+			}
+			var blood_particles_instance = Global.instance_node(blood_particles, dict, Global.node_creation_parent)
 			blood_particles_instance.rotation = velocity.angle()
 			blood_particles_instance.modulate = Color.from_hsv(current_color.h, current_color.s, current_color.v * 0.5)
 		queue_free()
@@ -46,7 +49,7 @@ func _on_HitBox_area_entered(area):
 		# 击中震动
 		if hp > 1 :
 			Global.camera.screen_shake(10, 0.05)
-		hp -= 1
+		hp -= area.get_parent().damage
 		stun = true
 		$StunTimer.start()
 		area.get_parent().queue_free()

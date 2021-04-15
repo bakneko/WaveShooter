@@ -8,7 +8,10 @@ var is_dead = false
 var reload_speed = 0.1
 var default_reload_speed = reload_speed
 
-var power_up_reset = []
+var damage = 1
+var default_damage = damage
+
+var power_up_resets = []
 
 var bullet = preload("res://scenes/Bullet.tscn")
 
@@ -34,7 +37,11 @@ func _process(delta):
 		global_position += velocity * speed * delta
 	
 	if Input.is_action_pressed("click") and Global.node_creation_parent != null and can_shoot and !is_dead:
-		Global.instance_node(bullet, global_position, Global.node_creation_parent)
+		var dict = {
+			"global_position" : global_position,
+			"damage" : damage
+		}
+		Global.instance_node(bullet, dict, Global.node_creation_parent)
 		$ReloadTimer.start()
 		can_shoot = false
 		# 注意：如果没有parent，那么get_parent()将会报错
@@ -43,7 +50,7 @@ func _process(delta):
 
 func _on_ReloadTimer_timeout():
 	can_shoot = true
-	$ReloadTimer.wait_time = reload_speed 
+	$ReloadTimer.wait_time = reload_speed
 	pass
 
 func _on_HitBox_area_entered(area):
@@ -60,7 +67,10 @@ func _on_HitBox_area_entered(area):
 
 func _on_PowerUpCoolDownTimer_timeout():
 	# 解决加入多个PowerUp的问题
-	if power_up_reset.find("PowerUpReload") != null:
+	if power_up_resets.find("reload_speed") != null:
 		reload_speed = default_reload_speed
-		power_up_reset.erase("PowerUpReload")
+		power_up_resets.erase("reload_speed")
+	if power_up_resets.find("damage") != null:
+		damage = default_damage
+		power_up_resets.erase("damage")
 	pass

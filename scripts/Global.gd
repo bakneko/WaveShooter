@@ -9,10 +9,12 @@ var high_score = 0
 var is_first_round = true
 
 # 全局的实例化子场景代码
-func instance_node(node, location, parent):
+func instance_node(node, dictionary, parent):
 	var node_instance = node.instance()
 	parent.add_child(node_instance)
-	node_instance.global_position = location
+	for variable in dictionary:
+		node_instance.set(variable, dictionary[variable])
+	# Python 字典
 	return node_instance
 
 # 权重生成

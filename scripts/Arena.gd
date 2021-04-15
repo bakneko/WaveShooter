@@ -18,9 +18,12 @@ func _on_EnemySpawnTimer_timeout():
 	while enemy_position.x < 640 and enemy_position.x > -80 and enemy_position.y < 360 and enemy_position.y  > -45:
 		enemy_position = Vector2(rand_range(-160,670), rand_range(-90,390))
 	
-	var enemy_index = Global.randw([5,3,2])
+	var enemy_index = Global.randw([7,2,1])
 	# random with weight.
-	Global.instance_node(enemies[enemy_index], enemy_position, self)
+	var dict = {
+		"global_position" : enemy_position
+	}
+	Global.instance_node(enemies[enemy_index], dict, self)
 	pass
 
 
@@ -33,5 +36,9 @@ func _on_DifficultyTimer_timeout():
 func _on_PowerUpSpawnTimer_timeout():
 	var power_up_index = Global.randw([1])
 	# random instance powerups
-	Global.instance_node(powerups[power_up_index], Vector2(randi() % 640 + 1, randi() % 360 + 1), self)
+	var position = Vector2(randi() % 640 + 1, randi() % 360 + 1)
+	var dict = {
+		"global_position" : position
+	}
+	Global.instance_node(powerups[power_up_index], dict, self)
 	pass

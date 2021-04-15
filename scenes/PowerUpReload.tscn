@@ -12,8 +12,10 @@ rotation = 0.785398
 scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
-player_variable_key = "reload_speed"
-player_variable_value = 0.05
+variable_dictionary = {
+"damage": 3,
+"reload_speed": 0.05
+}
 
 [node name="HitBox" type="Area2D" parent="."]
 
