@@ -15,7 +15,6 @@ initial_velocity = 658.0
 initial_velocity_random = 1.0
 scale_amount = 0.03
 scale_amount_random = 0.06
-color = Color( 0.486275, 0.00392157, 0.0352941, 0.8 )
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "设置Z Index为负值，让粒子在下层显示"

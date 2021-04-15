@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Arena.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/EnemyRed.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/EnemyYellow.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/EnemyGreen.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/PowerUpReload.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -29,6 +30,7 @@ font_data = ExtResource( 3 )
 [node name="Arena" type="Node2D"]
 script = ExtResource( 2 )
 enemies = [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]
+powerups = [ ExtResource( 10 ) ]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 319.63, 179.63 )
@@ -42,6 +44,10 @@ autostart = true
 
 [node name="DifficultyTimer" type="Timer" parent="."]
 wait_time = 5.0
+autostart = true
+
+[node name="PowerUpSpawnTimer" type="Timer" parent="."]
+wait_time = 15.0
 autostart = true
 
 [node name="UI" type="Node2D" parent="."]
@@ -94,4 +100,5 @@ one_shot = true
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_EnemySpawnTimer_timeout"]
 [connection signal="timeout" from="DifficultyTimer" to="." method="_on_DifficultyTimer_timeout"]
+[connection signal="timeout" from="PowerUpSpawnTimer" to="." method="_on_PowerUpSpawnTimer_timeout"]
 [connection signal="timeout" from="Camera2D/ScreenShakeTimer" to="Camera2D" method="_on_ScreenShakeTimer_timeout"]

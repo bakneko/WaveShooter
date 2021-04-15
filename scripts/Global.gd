@@ -17,7 +17,7 @@ func instance_node(node, location, parent):
 
 # 权重生成
 # 传入权重列表，返回随机出来的数在权重列表中的位置
-func random_weight(weights):
+func randw(weights):
 	var total_weight = 0
 	# 计算权重列表的总和
 	for i in weights:

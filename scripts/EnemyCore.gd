@@ -24,6 +24,7 @@ func _process(_delta):
 		if Global.node_creation_parent != null:
 			var blood_particles_instance = Global.instance_node(blood_particles, global_position, Global.node_creation_parent)
 			blood_particles_instance.rotation = velocity.angle()
+			blood_particles_instance.modulate = Color.from_hsv(current_color.h, current_color.s, current_color.v * 0.5)
 		queue_free()
 	pass
 
