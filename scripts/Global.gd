@@ -1,5 +1,9 @@
 extends Node
 
+const SAVE_DIR = "user://saves/WaveShooterEx/"
+
+var save_path = SAVE_DIR + "save.data"
+
 # 修复如果没有Parent的问题
 var node_creation_parent = null
 var player = null
@@ -36,3 +40,31 @@ func randw(weights):
 			return i
 		else:
 			continue
+
+func _ready():
+	var file: File = File.new()
+	if file.file_exists(save_path):
+		var error = file.open_encrypted_with_pass(save_path, File.READ, "encrypt-key")
+		if error == OK:
+			var data = file.get_var()
+			# set highscore
+			# high_score = data["high_score"]
+			for variable in data:
+				set(variable, data[variable])
+			file.close()
+
+func _exit_tree():
+	# Dictionary for storing data
+	var data: Dictionary = {
+		"high_score" : high_score
+	}
+	
+	var directory: Directory = Directory.new()
+	if !directory.dir_exists(SAVE_DIR):
+		directory.make_dir_recursive(SAVE_DIR)
+	
+	var file: File = File.new()
+	var error = file.open_encrypted_with_pass(save_path, File.WRITE, "encrypt-key")
+	if error == OK:
+		file.store_var(data)
+		file.close()
