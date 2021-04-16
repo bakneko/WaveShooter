@@ -1,8 +1,9 @@
 extends Node
 
 const SAVE_DIR = "user://saves/WaveShooterEx/"
+const VERSION = "v1.1"
 
-var save_path = SAVE_DIR + "save.data"
+var save_path = SAVE_DIR + "savedata"
 
 # 修复如果没有Parent的问题
 var node_creation_parent = null
@@ -50,13 +51,15 @@ func _ready():
 			# set highscore
 			# high_score = data["high_score"]
 			for variable in data:
-				set(variable, data[variable])
+				if (variable != "version" and data["version"] == VERSION):
+					set(variable, data[variable])
 			file.close()
 
 func _exit_tree():
 	# Dictionary for storing data
 	var data: Dictionary = {
-		"high_score" : high_score
+		"high_score" : high_score,
+		"version" : VERSION
 	}
 	
 	var directory: Directory = Directory.new()
