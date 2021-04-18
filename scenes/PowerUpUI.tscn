@@ -1,0 +1,131 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scripts/Label.gd" type="Script" id=1]
+[ext_resource path="res://assets/Cube.png" type="Texture" id=2]
+[ext_resource path="res://assets/YousheTitleBlack.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://scripts/PowerUpUI.gd" type="Script" id=4]
+[ext_resource path="res://assets/SourceHanSansSC-Bold.otf" type="DynamicFontData" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 10
+font_data = ExtResource( 5 )
+
+[sub_resource type="Animation" id=3]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.517647, 0.368627, 0.968627, 1 ), Color( 1, 0.027451, 0.027451, 1 ), Color( 0.517647, 0.368627, 0.968627, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:custom_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 41.0264, 18.9865 )
+
+[node name="Control" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 19.0
+margin_top = 312.0
+margin_right = 93.0
+margin_bottom = 341.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+modulate = Color( 0.517647, 0.368627, 0.968627, 1 )
+margin_left = 14.136
+margin_top = -3.39624
+margin_right = 270.136
+margin_bottom = 252.604
+rect_rotation = 45.0
+rect_scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.132416
+margin_right = -8.0
+margin_bottom = -0.132416
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "0"
+align = 2
+valign = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Notification" type="ColorRect" parent="ColorRect"]
+margin_left = 16.699
+margin_top = 15.892
+margin_right = 28.699
+margin_bottom = 27.892
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect/Notification"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -8.0
+margin_bottom = 8.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "E"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
+anims/blink = SubResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2( 54.4762, 326.548 )
+shape = SubResource( 4 )
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

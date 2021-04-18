@@ -2,8 +2,7 @@ extends Sprite
 
 var velocity = Vector2(1,0)
 var speed = 250
-
-export(int) var damage = 1
+var damage = 1
 
 var look_once = true
 

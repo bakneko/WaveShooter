@@ -1,6 +1,6 @@
 extends Node
 
-const SAVE_DIR = "user://saves/WaveShooterEx/"
+const SAVE_DIR = "user://saves/"
 const VERSION = "v1.1"
 
 var save_path = SAVE_DIR + "savedata"
@@ -11,7 +11,7 @@ var player = null
 var camera = null
 var score = 0
 var high_score = 0
-var is_first_round = true
+var power_up_count = 0
 
 # 全局的实例化子场景代码
 func instance_node(node, dictionary, parent):
@@ -45,7 +45,7 @@ func randw(weights):
 func _ready():
 	var file: File = File.new()
 	if file.file_exists(save_path):
-		var error = file.open_encrypted_with_pass(save_path, File.READ, "encrypt-key")
+		var error = file.open(save_path, File.READ)
 		if error == OK:
 			var data = file.get_var()
 			# set highscore
@@ -64,10 +64,16 @@ func _exit_tree():
 	
 	var directory: Directory = Directory.new()
 	if !directory.dir_exists(SAVE_DIR):
+		# warning-ignore:return_value_discarded
 		directory.make_dir_recursive(SAVE_DIR)
 	
 	var file: File = File.new()
-	var error = file.open_encrypted_with_pass(save_path, File.WRITE, "encrypt-key")
+	var error = file.open(save_path, File.WRITE)
 	if error == OK:
 		file.store_var(data)
 		file.close()
+
+func _process(_delta):
+	if Input.is_action_pressed("exit"):
+		get_tree().quit(0)
+	pass

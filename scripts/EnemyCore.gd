@@ -17,6 +17,8 @@ onready var current_color = modulate
 func _process(_delta):
 	if hp <= 0:
 		if Global.camera != null:
+			if Global.score > 1000:
+				screen_shake = 60
 			Global.camera.screen_shake(screen_shake, 0.3)
 		# add score
 		Global.score += score

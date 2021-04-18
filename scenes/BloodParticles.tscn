@@ -1,9 +1,38 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/BloodParticles.gd" type="Script" id=1]
 [ext_resource path="res://assets/Circle.png" type="Texture" id=2]
 
+[sub_resource type="Animation" id=1]
+resource_name = "disapper"
+length = 10.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 10 )
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 10 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
 [node name="BloodParticles" type="CPUParticles2D"]
+modulate = Color( 1, 1, 1, 0 )
 z_index = -5
 amount = 15
 lifetime = 0.2
@@ -25,10 +54,7 @@ wait_time = 0.15
 one_shot = true
 autostart = true
 
-[node name="DisappearTimer" type="Timer" parent="."]
-wait_time = 10.0
-one_shot = true
-autostart = true
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/disapper = SubResource( 1 )
 
 [connection signal="timeout" from="FreezeBloodTimer" to="." method="_on_FreezeBloodTimer_timeout"]
-[connection signal="timeout" from="DisappearTimer" to="." method="_on_DisappearTimer_timeout"]
