@@ -36,7 +36,7 @@ func _on_DifficultyTimer_timeout():
 func _on_PowerUpSpawnTimer_timeout():
 	var power_up_index = Global.randw([1])
 	# random instance powerups
-	var position = Vector2(randi() % 640 + 1, randi() % 360 + 1)
+	var position = Vector2(randi() % 620 + 11, randi() % 340 + 11)
 	var dict = {
 		"global_position" : position
 	}

@@ -5,6 +5,14 @@ const VERSION = "v1.1"
 
 var save_path = SAVE_DIR + "savedata"
 
+var audio_dict = {
+	0: preload("res://assets/audios/laserSmall_000.ogg"),
+	1: preload("res://assets/audios/laserSmall_001.ogg"),
+	2: preload("res://assets/audios/laserSmall_002.ogg"),
+	3: preload("res://assets/audios/laserSmall_003.ogg"),
+	4: preload("res://assets/audios/laserSmall_004.ogg")
+}
+
 # 修复如果没有Parent的问题
 var node_creation_parent = null
 var player = null

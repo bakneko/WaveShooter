@@ -31,14 +31,6 @@ var power_up_cooldown = 3
 
 var bullet = preload("res://scenes/Bullet.tscn")
 
-var audio_dict = {
-	0: preload("res://assets/audios/laserSmall_000.ogg"),
-	1: preload("res://assets/audios/laserSmall_001.ogg"),
-	2: preload("res://assets/audios/laserSmall_002.ogg"),
-	3: preload("res://assets/audios/laserSmall_003.ogg"),
-	4: preload("res://assets/audios/laserSmall_004.ogg")
-}
-
 #------------------------------------------------#
 
 func _ready():
@@ -74,7 +66,7 @@ func _process(delta):
 		
 		# Play Audio
 		var audio_index = randi() % 4
-		$AudioStreamPlayer.stream = audio_dict[audio_index]
+		$AudioStreamPlayer.stream = Global.audio_dict[audio_index]
 		$AudioStreamPlayer.play()
 		# 注意：如果没有parent，那么get_parent()将会报错
 	
