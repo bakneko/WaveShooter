@@ -1,2 +1,2 @@
 # WaveShooterEX
-A Godot 2D shooter Game based on the tutorial by @PlugWorld.
+A Godot 2D shooter Game based on the tutorial by @ PlugWorld.
