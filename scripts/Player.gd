@@ -1,4 +1,4 @@
-extends Sprite
+extends Sprite2D
 
 
 #-Player Data------------------------------------#
@@ -99,7 +99,7 @@ func _on_HitBox_area_entered(area):
 		visible = false
 		is_dead = true
 		Global.power_up_count = 0
-		yield(get_tree().create_timer(1),"timeout")
+		await get_tree().create_timer(1).timeout
 	# warning-ignore:return_value_discarded
 		get_tree().reload_current_scene()
 	pass

@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/laserSmall_000.ogg-92ab0536ff856d6732328fa82788db7d.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://clekbbe6enuj6"
+path="res://.godot/imported/laserSmall_000.ogg-92ab0536ff856d6732328fa82788db7d.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audios/laserSmall_000.ogg"
-dest_files=[ "res://.import/laserSmall_000.ogg-92ab0536ff856d6732328fa82788db7d.oggstr" ]
+dest_files=["res://.godot/imported/laserSmall_000.ogg-92ab0536ff856d6732328fa82788db7d.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

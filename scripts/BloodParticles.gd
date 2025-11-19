@@ -10,4 +10,3 @@ func _on_FreezeBloodTimer_timeout():
 	# 完全禁止粒子
 	$AnimationPlayer.play("disapper")
 	pass
-

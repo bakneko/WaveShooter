@@ -1,50 +1,55 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=17 format=3 uid="uid://dmxu75ducm2et"]
 
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/Arena.gd" type="Script" id=2]
-[ext_resource path="res://assets/YousheTitleBlack.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://scripts/Score.gd" type="Script" id=4]
-[ext_resource path="res://scripts/Camera2D.gd" type="Script" id=5]
-[ext_resource path="res://scripts/HighScore.gd" type="Script" id=6]
-[ext_resource path="res://scenes/EnemyRed.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/EnemyYellow.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/EnemyGreen.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/PowerUpReload.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/PowerUpUI.tscn" type="PackedScene" id=11]
+[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="1"]
+[ext_resource type="Script" uid="uid://ld0v23ah8ehx" path="res://scripts/Arena.gd" id="2"]
+[ext_resource type="FontFile" uid="uid://bk3sgqhaau1fs" path="res://assets/YousheTitleBlack.ttf" id="3"]
+[ext_resource type="Script" uid="uid://cjnlqqms6n426" path="res://scripts/Score.gd" id="4"]
+[ext_resource type="Script" uid="uid://gq4e5ubh4rfl" path="res://scripts/Camera2D.gd" id="5"]
+[ext_resource type="Script" uid="uid://dekg1i8gex7fx" path="res://scripts/HighScore.gd" id="6"]
+[ext_resource type="PackedScene" path="res://scenes/EnemyRed.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://scenes/EnemyYellow.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://scenes/EnemyGreen.tscn" id="9"]
+[ext_resource type="PackedScene" path="res://scenes/PowerUpReload.tscn" id="10"]
+[ext_resource type="PackedScene" path="res://scenes/PowerUpUI.tscn" id="11"]
 
-[sub_resource type="Environment" id=1]
+[sub_resource type="Environment" id="1"]
 background_mode = 4
 glow_enabled = true
 glow_bloom = 0.15
 glow_blend_mode = 0
-glow_bicubic_upscale = true
 
-[sub_resource type="DynamicFont" id=2]
-size = 50
-use_filter = true
-font_data = ExtResource( 3 )
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("3")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 68.0117, 20.2397 )
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(136.0234, 40.4794)
 
-[sub_resource type="DynamicFont" id=4]
-size = 18
-use_filter = true
-font_data = ExtResource( 3 )
+[sub_resource type="FontFile" id="4"]
+fallbacks = Array[Font]([ExtResource("3")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 55.8309, 12.3562 )
+[sub_resource type="RectangleShape2D" id="5"]
+size = Vector2(111.6618, 24.7124)
 
 [node name="Arena" type="Node2D"]
-script = ExtResource( 2 )
-enemies = [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]
-powerups = [ ExtResource( 10 ) ]
+script = ExtResource("2")
+enemies = [ExtResource("7"), ExtResource("8"), ExtResource("9")]
+powerups = [ExtResource("10")]
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 319.63, 179.63 )
+[node name="Player" parent="." instance=ExtResource("1")]
+position = Vector2(319.63, 179.63)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
+environment = SubResource("1")
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -60,67 +65,58 @@ autostart = true
 
 [node name="UI" type="Node2D" parent="."]
 z_index = 20
-__meta__ = {
-"_editor_description_": "使用该Node2D而不是CanvasLayer的原因是，后面的屏幕震荡效果没法影响Canvas。
-另外需要让比分呆在屏幕最上面，所以设置 Z Index"
-}
 
 [node name="Control" type="Control" parent="UI"]
-margin_right = 640.0
-margin_bottom = 360.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
 
 [node name="Score" type="Label" parent="UI/Control"]
-margin_right = 640.0
-margin_bottom = 80.0
-custom_fonts/font = SubResource( 2 )
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 80.0
+theme_override_fonts/font = SubResource("2")
 text = "1440"
-align = 1
-valign = 1
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4")
 
 [node name="Area2D" type="Area2D" parent="UI/Control/Score"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Control/Score/Area2D"]
 visible = false
-position = Vector2( 319.027, 38.7104 )
-shape = SubResource( 3 )
+position = Vector2(319.027, 38.7104)
+shape = SubResource("3")
 
 [node name="HighScore" type="Label" parent="UI/Control"]
+layout_mode = 0
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -48.0
-margin_right = 629.0
-margin_bottom = -19.0
-custom_fonts/font = SubResource( 4 )
+offset_top = -48.0
+offset_right = 629.0
+offset_bottom = -19.0
+theme_override_fonts/font = SubResource("4")
 text = "最高分:2480"
-align = 2
-valign = 1
-script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("6")
 
 [node name="Area2D" type="Area2D" parent="UI/Control/HighScore"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Control/HighScore/Area2D"]
 visible = false
-position = Vector2( 575.681, 13.9376 )
-shape = SubResource( 5 )
+position = Vector2(575.681, 13.9376)
+shape = SubResource("5")
 
-[node name="PowerUpUI" parent="UI/Control" instance=ExtResource( 11 )]
-margin_right = 0.0
-margin_bottom = 0.0
+[node name="PowerUpUI" parent="UI/Control" instance=ExtResource("11")]
+anchors_preset = 0
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 320, 180 )
-current = true
-script = ExtResource( 5 )
+position = Vector2(320, 180)
+script = ExtResource("5")
 
 [node name="ScreenShakeTimer" type="Timer" parent="Camera2D"]
 one_shot = true

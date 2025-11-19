@@ -23,7 +23,7 @@ var power_up_count = 0
 
 # 全局的实例化子场景代码
 func instance_node(node, dictionary, parent):
-	var node_instance = node.instance()
+	var node_instance = node.instantiate()
 	parent.add_child(node_instance)
 	for variable in dictionary:
 		node_instance.set(variable, dictionary[variable])
@@ -51,10 +51,9 @@ func randw(weights):
 			continue
 
 func _ready():
-	var file: File = File.new()
-	if file.file_exists(save_path):
-		var error = file.open(save_path, File.READ)
-		if error == OK:
+	if FileAccess.file_exists(save_path):
+		var file = FileAccess.open(save_path, FileAccess.READ)
+		if file != null:
 			var data = file.get_var()
 			# set highscore
 			# high_score = data["high_score"]
@@ -70,14 +69,12 @@ func _exit_tree():
 		"version" : VERSION
 	}
 	
-	var directory: Directory = Directory.new()
-	if !directory.dir_exists(SAVE_DIR):
+	if !DirAccess.dir_exists_absolute(SAVE_DIR):
 		# warning-ignore:return_value_discarded
-		directory.make_dir_recursive(SAVE_DIR)
+		DirAccess.make_dir_recursive_absolute(SAVE_DIR)
 	
-	var file: File = File.new()
-	var error = file.open(save_path, File.WRITE)
-	if error == OK:
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	if file != null:
 		file.store_var(data)
 		file.close()
 

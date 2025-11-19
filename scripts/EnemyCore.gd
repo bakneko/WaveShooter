@@ -1,10 +1,10 @@
-extends Sprite
+extends Sprite2D
 
-export(int) var speed = 75
-export(int) var hp = 3
-export(int) var knock_back = 600
-export(int) var screen_shake = 120
-export(int) var score = 10
+@export var speed: int = 75
+@export var hp: int = 3
+@export var knock_back: int = 600
+@export var screen_shake: int = 120
+@export var score: int = 10
 
 var velocity = Vector2()
 var stun = false
@@ -12,7 +12,7 @@ var stun = false
 var blood_particles = preload("res://scenes/BloodParticles.tscn")
 
 # onready 代表 初始化完成之后再声明变量
-onready var current_color = modulate
+@onready var current_color = modulate
 
 func _process(_delta):
 	if hp <= 0:
@@ -46,7 +46,7 @@ func basic_movement(delta):
 func _on_HitBox_area_entered(area):
 	# 注意 stun == false, 防止在击退状态下再次“击退”
 	if area.is_in_group("enemy_damager") and !stun:
-		modulate = Color.white
+		modulate = Color.WHITE
 		velocity = - velocity * knock_back
 		# 击中震动
 		if hp > 1 :

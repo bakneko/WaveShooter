@@ -1,4 +1,4 @@
-extends Sprite
+extends Sprite2D
 
 var velocity = Vector2(1,0)
 var speed = 250
