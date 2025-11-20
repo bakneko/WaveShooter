@@ -1,7 +1,7 @@
 extends Label
 
 func _ready():
-	text = "最高分: {0}".format(Global.high_score)
+	text = "最高分: {0}".format([Global.high_score])
 	pass
 
 func _process(_delta):

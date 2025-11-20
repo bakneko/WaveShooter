@@ -14,7 +14,8 @@ var blood_particles = preload("res://scenes/BloodParticles.tscn")
 # onready 代表 初始化完成之后再声明变量
 @onready var current_color = modulate
 
-func _process(_delta):
+func _process(delta):
+	basic_movement(delta)
 	if hp <= 0:
 		if Global.camera != null:
 			if Global.score > 1000:
@@ -41,7 +42,7 @@ func basic_movement(delta):
 	elif stun:
 		velocity = lerp(velocity, Vector2(0,0), 0.3)
 		global_position += velocity * delta
-	pass	
+	pass
 
 func _on_HitBox_area_entered(area):
 	# 注意 stun == false, 防止在击退状态下再次“击退”

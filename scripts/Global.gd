@@ -3,6 +3,9 @@ extends Node
 const SAVE_DIR = "user://saves/"
 const VERSION = "v1.1"
 
+var viewport_x = ProjectSettings.get_setting("display/window/size/viewport_width")
+var viewport_y = ProjectSettings.get_setting("display/window/size/viewport_height")
+
 var save_path = SAVE_DIR + "savedata"
 
 var audio_dict = {

@@ -14,6 +14,7 @@ func _exit_tree():
 
 
 func _on_EnemySpawnTimer_timeout():
+	print("Spawned Enemy")
 	var enemy_position = Vector2(randf_range(-160,670), randf_range(-90,390))
 	while enemy_position.x < 640 and enemy_position.x > -80 and enemy_position.y < 360 and enemy_position.y  > -45:
 		enemy_position = Vector2(randf_range(-160,670), randf_range(-90,390))
@@ -29,7 +30,7 @@ func _on_EnemySpawnTimer_timeout():
 
 func _on_DifficultyTimer_timeout():
 	if $EnemySpawnTimer.wait_time > 0.5:
-		$EnemySpawnTimer.wait_time -= 0.1
+		$EnemySpawnTimer.wait_time -= 0.2
 	pass
 
 

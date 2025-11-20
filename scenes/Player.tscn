@@ -1,17 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://bysodq57n7pqk"]
 
-[ext_resource path="res://assets/Cube.png" type="Texture2D" id=1]
-[ext_resource path="res://scripts/Player.gd" type="Script" id=2]
-[ext_resource path="res://assets/audios/laserSmall_000.ogg" type="AudioStream" id=3]
+[ext_resource type="Texture2D" uid="uid://csltdomhlmkn" path="res://assets/Cube.png" id="1"]
+[ext_resource type="Script" uid="uid://bvlvfq71odoup" path="res://scripts/Player.gd" id="2"]
+[ext_resource type="AudioStream" uid="uid://clekbbe6enuj6" path="res://assets/audios/laserSmall_000.ogg" id="3"]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 133.333, 133.333 )
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(266.666, 266.666)
 
 [node name="Player" type="Sprite2D"]
-modulate = Color( 0.117647, 0.501961, 1, 1 )
-scale = Vector2( 0.075, 0.075 )
-texture = ExtResource( 1 )
-script = ExtResource( 2 )
+modulate = Color(0.117647, 0.501961, 1, 1)
+scale = Vector2(0.075, 0.075)
+texture = ExtResource("1")
+script = ExtResource("2")
 
 [node name="ReloadTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -20,17 +20,15 @@ one_shot = true
 [node name="PowerUpCoolDownTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="HitBox" type="Area2D" parent="." groups=[
-"player",
-]]
+[node name="HitBox" type="Area2D" parent="." groups=["player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 visible = false
-shape = SubResource( 1 )
+shape = SubResource("1")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
-bus = "PlayerShoot"
+stream = ExtResource("3")
+bus = &"PlayerShoot"
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
 [connection signal="timeout" from="PowerUpCoolDownTimer" to="." method="_on_PowerUpCoolDownTimer_timeout"]

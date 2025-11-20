@@ -1,6 +1,5 @@
 extends Sprite2D
 
-
 #-Player Data------------------------------------#
 
 var speed = 175
@@ -48,8 +47,9 @@ func _process(delta):
 	
 	velocity = velocity.normalized()
 	# 防止Player跑出屏幕
-	global_position.x = clamp(global_position.x, 10, 630)
-	global_position.y = clamp(global_position.y, 10, 350)
+	global_position.x = clamp(global_position.x, 10, Global.viewport_x-10)
+	global_position.y = clamp(global_position.y, 10, Global.viewport_y-10)
+	#print(global_position)
 	# 乘以delta保证速度一致
 	if !is_dead:
 		global_position += velocity * speed * delta

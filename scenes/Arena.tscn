@@ -1,22 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://dmxu75ducm2et"]
+[gd_scene load_steps=16 format=3 uid="uid://dmxu75ducm2et"]
 
-[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://bysodq57n7pqk" path="res://scenes/Player.tscn" id="1"]
 [ext_resource type="Script" uid="uid://ld0v23ah8ehx" path="res://scripts/Arena.gd" id="2"]
 [ext_resource type="FontFile" uid="uid://bk3sgqhaau1fs" path="res://assets/YousheTitleBlack.ttf" id="3"]
 [ext_resource type="Script" uid="uid://cjnlqqms6n426" path="res://scripts/Score.gd" id="4"]
 [ext_resource type="Script" uid="uid://gq4e5ubh4rfl" path="res://scripts/Camera2D.gd" id="5"]
 [ext_resource type="Script" uid="uid://dekg1i8gex7fx" path="res://scripts/HighScore.gd" id="6"]
-[ext_resource type="PackedScene" path="res://scenes/EnemyRed.tscn" id="7"]
-[ext_resource type="PackedScene" path="res://scenes/EnemyYellow.tscn" id="8"]
-[ext_resource type="PackedScene" path="res://scenes/EnemyGreen.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://cw51jxjlfon3d" path="res://scenes/EnemyRed.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://cskhbb22fvjjn" path="res://scenes/EnemyYellow.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://cay7y3bgdjdwi" path="res://scenes/EnemyGreen.tscn" id="9"]
 [ext_resource type="PackedScene" path="res://scenes/PowerUpReload.tscn" id="10"]
-[ext_resource type="PackedScene" path="res://scenes/PowerUpUI.tscn" id="11"]
-
-[sub_resource type="Environment" id="1"]
-background_mode = 4
-glow_enabled = true
-glow_bloom = 0.15
-glow_blend_mode = 0
+[ext_resource type="PackedScene" uid="uid://dwa4n1xeuon1p" path="res://scenes/PowerUpUI.tscn" id="11"]
 
 [sub_resource type="FontFile" id="2"]
 fallbacks = Array[Font]([ExtResource("3")])
@@ -42,14 +36,11 @@ size = Vector2(111.6618, 24.7124)
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("2")
-enemies = [ExtResource("7"), ExtResource("8"), ExtResource("9")]
-powerups = [ExtResource("10")]
+enemies = Array[PackedScene]([ExtResource("7"), ExtResource("8"), ExtResource("9")])
+powerups = Array[PackedScene]([ExtResource("10")])
 
 [node name="Player" parent="." instance=ExtResource("1")]
 position = Vector2(319.63, 179.63)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("1")
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -110,7 +101,7 @@ position = Vector2(575.681, 13.9376)
 shape = SubResource("5")
 
 [node name="PowerUpUI" parent="UI/Control" instance=ExtResource("11")]
-anchors_preset = 0
+layout_mode = 0
 offset_right = 0.0
 offset_bottom = 0.0
 
