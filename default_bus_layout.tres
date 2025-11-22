@@ -1,9 +1,9 @@
-[gd_resource type="AudioBusLayout" format=2]
+[gd_resource type="AudioBusLayout" format=3 uid="uid://c8mb56h8an2ht"]
 
 [resource]
-bus/1/name = "PlayerShoot"
+bus/1/name = &"PlayerShoot"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = 0.0
-bus/1/send = "Master"
+bus/1/volume_db = -13.51011
+bus/1/send = &"Master"

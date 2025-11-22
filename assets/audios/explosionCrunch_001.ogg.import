@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/explosionCrunch_001.ogg-d92e45013d86dda1ab49b9176df713d2.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ch123vu2ggixy"
+path="res://.godot/imported/explosionCrunch_001.ogg-d92e45013d86dda1ab49b9176df713d2.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audios/explosionCrunch_001.ogg"
-dest_files=[ "res://.import/explosionCrunch_001.ogg-d92e45013d86dda1ab49b9176df713d2.oggstr" ]
+dest_files=["res://.godot/imported/explosionCrunch_001.ogg-d92e45013d86dda1ab49b9176df713d2.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

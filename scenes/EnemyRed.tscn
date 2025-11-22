@@ -1,7 +1,5 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://cw51jxjlfon3d"]
 
-[ext_resource path="res://scenes/EnemyCore.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/EnemySimple.gd" type="Script" id=2]
+[ext_resource type="PackedScene" path="res://scenes/EnemyCore.tscn" id="1"]
 
-[node name="EnemyRed" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[node name="EnemyRed" instance=ExtResource("1")]

@@ -16,10 +16,10 @@ func _process(delta):
 	# Camera摇晃代码
 	# 可以改用Perlin Noise
 	if screen_shake_start:
-		global_position += Vector2(rand_range(-shake_intensity, shake_intensity),
-								   rand_range(-shake_intensity, shake_intensity)) * delta
+		global_position += Vector2(randf_range(-shake_intensity, shake_intensity),
+								   randf_range(-shake_intensity, shake_intensity)) * delta
 	else:
-		global_position = lerp(global_position, Vector2(320, 180), 0.3)
+		global_position = lerp(global_position, Vector2(Global.viewport_x/2, Global.viewport_y/2), 0.3)
 	pass
 	
 func screen_shake(intensity, time):

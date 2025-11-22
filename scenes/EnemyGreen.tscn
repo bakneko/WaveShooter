@@ -1,20 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://cay7y3bgdjdwi"]
 
-[ext_resource path="res://scenes/EnemyCore.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/EnemySimple.gd" type="Script" id=2]
+[ext_resource type="PackedScene" path="res://scenes/EnemyCore.tscn" id="1"]
 
-[node name="EnemyCore" instance=ExtResource( 1 )]
-modulate = Color( 0.180392, 0.8, 0.443137, 1 )
-scale = Vector2( 0.2, 0.2 )
-script = ExtResource( 2 )
-speed = 30
+[node name="EnemyCore" instance=ExtResource("1")]
+modulate = Color(0.180392, 0.8, 0.443137, 1)
+scale = Vector2(0.2, 0.2)
+speed = 50
 hp = 10
 knock_back = 300
-screen_shake = 200
+screen_shake = 150
 score = 50
 
 [node name="HitBox" parent="." index="0"]
 visible = true
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
-position = Vector2( 0, -0.834274 )
+position = Vector2(0, -0.834274)

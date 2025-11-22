@@ -1,5 +1,4 @@
-extends Sprite
-
+extends Sprite2D
 
 #-Player Data------------------------------------#
 
@@ -48,8 +47,9 @@ func _process(delta):
 	
 	velocity = velocity.normalized()
 	# 防止Player跑出屏幕
-	global_position.x = clamp(global_position.x, 10, 630)
-	global_position.y = clamp(global_position.y, 10, 350)
+	global_position.x = clamp(global_position.x, 10, Global.viewport_x-10)
+	global_position.y = clamp(global_position.y, 10, Global.viewport_y-10)
+	#print(global_position)
 	# 乘以delta保证速度一致
 	if !is_dead:
 		global_position += velocity * speed * delta
@@ -99,7 +99,7 @@ func _on_HitBox_area_entered(area):
 		visible = false
 		is_dead = true
 		Global.power_up_count = 0
-		yield(get_tree().create_timer(1),"timeout")
+		await get_tree().create_timer(1).timeout
 	# warning-ignore:return_value_discarded
 		get_tree().reload_current_scene()
 	pass
